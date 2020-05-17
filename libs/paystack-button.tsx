@@ -8,6 +8,7 @@ interface PaystackButtonProps extends PaystackProps {
   children?: ReactNode;
   onSuccess?: Function;
   onClose?: Function;
+  ref?: any;
 }
 
 const PaystackButton = ({
@@ -16,11 +17,12 @@ const PaystackButton = ({
   children,
   onSuccess,
   onClose,
+  ref,
   ...others
 }: PaystackButtonProps): ReactNode => {
   const initializePayment = usePaystackPayment(others);
   return (
-    <button className={className} onClick={(): void => initializePayment(onSuccess, onClose)}>
+    <button ref={r => ref=r} className={className} onClick={(): void => initializePayment(onSuccess, onClose)}>
       {text || children}
     </button>
   );
